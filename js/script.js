@@ -2,66 +2,77 @@ let todos = [];
 let currentFilter = "all";
 
 function addTodo() {
-    const todoInput = document.getElementById('todo-input');
-    const todoDate = document.getElementById('todo-date');
+    const input = document.getElementById("todo-input");
+    const date = document.getElementById("todo-date");
 
-    if (todoInput.value.trim() === '' || todoDate.value === '') {
-        alert('Please enter a todo item and select a due date.');
+    if (input.value.trim() === "" || date.value === "") {
+        alert("Please enter todo and date.");
         return;
     }
 
     const newTodo = {
         id: Date.now(),
-        text: todoInput.value,
-        date: todoDate.value,
+        text: input.value,
+        date: date.value,
         completed: false
     };
 
     todos.push(newTodo);
 
-    todoInput.value = '';
-    todoDate.value = '';
+    input.value = "";
+    date.value = "";
 
     displayTodos();
 }
 
 function displayTodos() {
-    const todoList = document.getElementById('todo-list');
-    todoList.innerHTML = '';
+    const list = document.getElementById("todo-list");
+    list.innerHTML = "";
 
-    let filteredTodos = todos;
+    let filtered = todos;
 
-    if (currentFilter === "completed") {
-        filteredTodos = todos.filter(todo => todo.completed);
-    } else if (currentFilter === "active") {
-        filteredTodos = todos.filter(todo => !todo.completed);
+    if (currentFilter === "active") {
+        filtered = todos.filter(todo => !todo.completed);
+    } else if (currentFilter === "completed") {
+        filtered = todos.filter(todo => todo.completed);
     }
 
-    if (filteredTodos.length === 0) {
-        todoList.innerHTML = `<li class="text-gray-500">No todos available</li>`;
+    if (filtered.length === 0) {
+        list.innerHTML = '<li class="empty">No todos available</li>';
         return;
     }
 
-    filteredTodos.forEach(todo => {
-        todoList.innerHTML += `
-        <li class="flex justify-between items-center border p-2 rounded mb-2">
-            <div>
-                <p class="${todo.completed ? 'line-through text-gray-400' : ''}">
-                    ${todo.text}
-                </p>
-                <span class="text-sm text-gray-500">${todo.date}</span>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="toggleComplete(${todo.id})"
-                    class="bg-green-500 text-white px-2 py-1 rounded">
-                    ✓
-                </button>
-                <button onclick="deleteTodo(${todo.id})"
-                    class="bg-red-500 text-white px-2 py-1 rounded">
-                    ✕
-                </button>
-            </div>
-        </li>`;
+    filtered.forEach(todo => {
+        const li = document.createElement("li");
+
+        const leftDiv = document.createElement("div");
+        leftDiv.innerHTML = `
+            <strong class="${todo.completed ? 'completed' : ''}">
+                ${todo.text}
+            </strong>
+            <br>
+            <small>${todo.date}</small>
+        `;
+
+        const rightDiv = document.createElement("div");
+
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "✓";
+        completeBtn.className = "primary";
+        completeBtn.onclick = () => toggleComplete(todo.id);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "✕";
+        deleteBtn.className = "danger";
+        deleteBtn.onclick = () => deleteTodo(todo.id);
+
+        rightDiv.appendChild(completeBtn);
+        rightDiv.appendChild(deleteBtn);
+
+        li.appendChild(leftDiv);
+        li.appendChild(rightDiv);
+
+        list.appendChild(li);
     });
 }
 

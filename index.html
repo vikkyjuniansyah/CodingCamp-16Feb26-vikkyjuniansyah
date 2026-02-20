@@ -5,101 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List Web App</title>
-
-    <!-- External CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Tailwind CDN (Optional if still used) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <!-- HEADER -->
     <header>
         <h1>Todo List Application</h1>
         <p>Manage your daily tasks efficiently</p>
     </header>
 
-    <!-- ================= MAIN ================= -->
+    <!-- MAIN -->
     <main>
-
         <article class="card">
 
-            <!-- ===== Add New Todo Section ===== -->
-            <section aria-labelledby="add-heading">
-                <h2 id="add-heading" class="section-title">
-                    Add New Todo
-                </h2>
+            <!-- ADD TODO -->
+            <section>
+                <h2 class="section-title">Add New Todo</h2>
 
                 <form onsubmit="event.preventDefault(); addTodo();" class="form-group">
 
-                    <div>
-                        <label for="todo-input">Todo Item</label>
-                        <input 
-                            type="text"
-                            id="todo-input"
-                            name="todo"
-                            placeholder="Enter a new todo item"
-                            required>
-                    </div>
+                    <label for="todo-input">Todo Item</label>
+                    <input type="text" id="todo-input" placeholder="Enter a new todo item" required>
 
-                    <div>
-                        <label for="todo-date">Due Date</label>
-                        <input 
-                            type="date"
-                            id="todo-date"
-                            name="date"
-                            required>
-                    </div>
+                    <label for="todo-date">Due Date</label>
+                    <input type="date" id="todo-date" required>
 
-                    <button type="submit">
+                    <button type="submit" class="primary">
                         Add Todo
                     </button>
 
                 </form>
             </section>
 
-            <!-- ===== Filter & Action Section ===== -->
-            <section aria-labelledby="action-heading" class="action-bar">
-                <h2 id="action-heading" class="sr-only">
-                    Todo Actions
-                </h2>
+            <!-- ACTIONS -->
+            <section class="action-bar">
 
                 <button onclick="deleteAllTodo()" class="danger">
                     Clear All
                 </button>
 
-                <nav aria-label="Filter Todos" class="filter-buttons">
-                    <button onclick="filterTodos('all')">All</button>
-                    <button onclick="filterTodos('active')">Active</button>
-                    <button onclick="filterTodos('completed')">Completed</button>
+                <nav class="filter-container" aria-label="Filter Todos">
+                    <label for="filter-select">Filter:</label>
+                    <select id="filter-select" onchange="filterTodos(this.value)">
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
                 </nav>
+
             </section>
 
-            <!-- ===== Todo Preview Section ===== -->
-            <section aria-labelledby="preview-heading">
-                <h2 id="preview-heading" class="section-title">
-                    Todo Preview
-                </h2>
-
+            <!-- PREVIEW -->
+            <section>
+                <h2 class="section-title">Todo Preview</h2>
                 <ul id="todo-list">
                     <li class="empty">No todos available</li>
                 </ul>
             </section>
 
         </article>
-
     </main>
 
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
     <footer>
         <p>© 2026 Todo List App. All rights reserved.</p>
     </footer>
 
-    <!-- External JavaScript -->
     <script src="js/script.js"></script>
 
 </body>
-
 </html>
