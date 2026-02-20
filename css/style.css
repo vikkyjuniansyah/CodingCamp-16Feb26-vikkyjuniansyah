@@ -1,0 +1,126 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px 20px 10px;
+    color: white;
+}
+
+header h1 {
+    font-size: 32px;
+}
+
+/* MAIN CENTER */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* FORM */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Action Bar */
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.danger {
+    background: #ef4444;
+    color: white;
+}
+
+.filter-buttons button {
+    background: #6366f1;
+    color: white;
+}
+
+/* Todo List */
+#todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#todo-list li {
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.empty {
+    text-align: center;
+    color: #9ca3af;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+}
