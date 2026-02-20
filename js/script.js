@@ -92,7 +92,7 @@ function deleteAllTodo() {
     todos = [];
     displayTodos();
 }
-
+// //
 function filterTodos(type) {
     currentFilter = type;
     displayTodos();
